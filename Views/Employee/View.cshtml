@@ -1,0 +1,44 @@
+﻿@model employee_crud.Models.UpdateEmployeeViewModel
+
+@{
+    ViewData["Title"] = "Employee Details";
+}
+
+<h1 class="mt-2">Employee Details</h1>
+<form method="post" action="View">
+    <input type="hidden" asp-for="Id" />
+    <!-- Name -->
+    <div class="mb-3">
+        <label for="nameId" class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="Name" id="nameId">
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+        <label for="emailId" class="form-label">Email address</label>
+        <input type="email" class="form-control" asp-for="Email" id="emailId">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <!-- Salary -->
+    <div class="mb-3">
+        <label for="salaryId" class="form-label">Salary</label>
+        <input type="number" class="form-control" asp-for="Salary" id="salaryId">
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="mb-3">
+        <label for="dobId" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" asp-for="DateOfBirth" id="dobId">
+    </div>
+
+    <!-- Department -->
+    <div class="mb-3">
+        <label for="departmentId" class="form-label">Department</label>
+        <input type="text" class="form-control" asp-for="Department" id="departmentId">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <button type="submit" class="btn btn-danger">Delete</button>
+</form>

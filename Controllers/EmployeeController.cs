@@ -3,6 +3,7 @@ using employee_crud.Models;
 using employee_crud.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.InteropServices;
 
 namespace employee_crud.Controllers
 {
@@ -54,6 +55,66 @@ namespace employee_crud.Controllers
             }
 
             return RedirectToAction("Add");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> View(Guid id)
+        {
+            var employee = await employeeCrudDBContext.Employees.FirstOrDefaultAsync(emp => emp.Id == id);
+
+            if(employee != null)
+            {
+                var viewModel = new UpdateEmployeeViewModel()
+                {
+                    Id = employee.Id,
+                    Name = employee.Name,
+                    Email = employee.Email,
+                    Salary = employee.Salary,
+                    Department = employee.Department,
+                    DateOfBirth = employee.DateOfBirth
+                };
+
+                return await Task.Run(() => View("View", viewModel));
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+
+        public async Task<IActionResult> View(UpdateEmployeeViewModel requestInfo)
+        {
+            try
+            {
+                // Getting specific employee info by requested employee id ...
+                var employee = await employeeCrudDBContext.Employees.FindAsync(requestInfo.Id);
+                
+                if (employee != null)
+                {
+                    employee.Name = requestInfo.Name;
+                    employee.Email = requestInfo.Email;
+                    employee.Salary = requestInfo.Salary;
+                    employee.Department = requestInfo.Department;
+                    employee.DateOfBirth = requestInfo.DateOfBirth;
+
+                    await employeeCrudDBContext.SaveChangesAsync();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    Console.WriteLine("Failed to get employee Data!!!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An exception occurred: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }
