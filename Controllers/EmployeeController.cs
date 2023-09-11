@@ -2,6 +2,7 @@
 using employee_crud.Models;
 using employee_crud.Models.Domain;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace employee_crud.Controllers
 {
@@ -11,6 +12,14 @@ namespace employee_crud.Controllers
         public EmployeeController(EmployeeCrudDBContext employeeCrudDBContext)
         {
             this.employeeCrudDBContext = employeeCrudDBContext;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var employees = await employeeCrudDBContext.Employees.ToListAsync();
+
+            return View(employees);
         }
 
         [HttpGet]
@@ -40,8 +49,8 @@ namespace employee_crud.Controllers
             catch (Exception ex)
             {
                 // Log or handle the exception
-                Console.WriteLine($"An exception occurred: {ex.Message}");
-                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+                //Console.WriteLine($"An exception occurred: {ex.Message}");
+                //Console.WriteLine($"Stack Trace: {ex.StackTrace}");
             }
 
             return RedirectToAction("Add");
