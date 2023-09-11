@@ -1,7 +1,11 @@
+using employee_crud.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<EmployeeCrudDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("EmployeeCrudConnectionString")));
 
 var app = builder.Build();
 
