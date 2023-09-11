@@ -20,7 +20,7 @@ namespace employee_crud.Controllers
         }
 
         [HttpPost]
-        public async  Task<IActionResult> Add(AddEmployeeViewModel addEmployeeRequest)
+        public async Task<IActionResult> Add(AddEmployeeViewModel addEmployeeRequest)
         {
             var employeeInfo = new Employee()
             {
