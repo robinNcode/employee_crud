@@ -1,0 +1,33 @@
+﻿@model employee_crud.Models.AddEmployeeViewModel
+
+@{
+}
+<form>
+    <!-- Name s-->
+    <div class="mb-3">
+        <label for="nameId" class="form-label">Name</label>
+        <input type="text" class="form-control" asp-for="Name" id="nameId">
+    </div>
+
+    <!-- Email -->
+    <div class="mb-3">
+        <label for="emailId" class="form-label">Email address</label>
+        <input type="email" class="form-control" asp-for="Email" id="emailId">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <!-- Salary -->
+    <div class="mb-3">
+        <label for="salaryId" class="form-label">Salary</label>
+        <input type="number" class="form-control" asp-for="Salary" id="salaryId">
+    </div>
+
+    <!-- Department -->
+    <div class="mb-3">
+        <label for="departmentId" class="form-label">Department</label>
+        <input type="text" class="form-control" asp-for="Department" id="departmentId">
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
