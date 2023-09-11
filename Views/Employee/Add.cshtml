@@ -2,6 +2,7 @@
 
 @{
 }
+<h1 class="mt-2">Add Employee</h1>
 <form>
     <!-- Name s-->
     <div class="mb-3">
@@ -20,6 +21,12 @@
     <div class="mb-3">
         <label for="salaryId" class="form-label">Salary</label>
         <input type="number" class="form-control" asp-for="Salary" id="salaryId">
+    </div>
+
+    <!-- Date of Birth -->
+    <div class="mb-3">
+        <label for="dobId" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control" asp-for="DateOfBirth" id="dobId">
     </div>
 
     <!-- Department -->
