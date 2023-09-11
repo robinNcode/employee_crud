@@ -32,8 +32,17 @@ namespace employee_crud.Controllers
                 Department = addEmployeeRequest.Department,
             };
 
-            await employeeCrudDBContext.AddAsync(employeeInfo);
-            await employeeCrudDBContext.SaveChangesAsync();
+            try
+            {
+                await employeeCrudDBContext.AddAsync(employeeInfo);
+                await employeeCrudDBContext.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception
+                Console.WriteLine($"An exception occurred: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+            }
 
             return RedirectToAction("Add");
         }

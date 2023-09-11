@@ -1,9 +1,10 @@
 ﻿@model employee_crud.Models.AddEmployeeViewModel
 
 @{
+    ViewData["Title"] = "Add Employee";
 }
 <h1 class="mt-2">Add Employee</h1>
-<form>
+<form method="post" action="Add">
     <!-- Name s-->
     <div class="mb-3">
         <label for="nameId" class="form-label">Name</label>
