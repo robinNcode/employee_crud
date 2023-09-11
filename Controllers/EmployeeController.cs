@@ -116,5 +116,20 @@ namespace employee_crud.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(UpdateEmployeeViewModel requestInfo)
+        {
+            // Getting specific employee info by requested employee id ...
+            var employee = await employeeCrudDBContext.Employees.FindAsync(requestInfo.Id);
+
+            if (employee != null)
+            {
+                employeeCrudDBContext.Employees.Remove(employee);
+                await employeeCrudDBContext.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Index");
+        }
     }
 }
